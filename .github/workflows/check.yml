@@ -32,19 +32,11 @@ jobs:
             ${{ env.cache-name }}-build-${{ hashFiles('hardcore.opam', 'build.sh') }}
             ${{ env.cache-name }}-build-
 
-#       - name: Install ocamlformat
-#         run: opam install ocamlformat.0.24.1
-
-      - name: Check format
-        run: |
-          eval $(opam env)
-#          script/check-format
-
       - name: Build Hardcore_Ocaml
         run: |
           eval $(opam env) 
           for d in */ ; do
-            if [ "$d" != "doc" ]; then
+            if [ "$d" != "doc/" ]; then
               cd $d; make; cd ..
             fi
           done
