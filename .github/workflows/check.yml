@@ -36,7 +36,7 @@ jobs:
         run: |
           eval $(opam env) 
           for d in */ ; do
-              if [ "$d" != "doc/" ] && [ "$d" != "*opam/" ]; then
+              if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
                   pwd
                   ls -al
                   echo $d
