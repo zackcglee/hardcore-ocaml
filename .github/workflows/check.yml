@@ -45,15 +45,19 @@ jobs:
           eval $(opam env) 
           for d in */ ; do
              if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
-                 echo $d
-                 cd $d;ls -al ;make; cd ..
+                 cd $d;make; cd ..
              fi
           done
 
       - name: Run test (regression)
         run: |
           eval $(opam env)
-          cd list;  time ./list -opt 10000000 > test.txt
+          for d in */ ; do
+             if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
+                 echo "$d: "
+                 cd $d;time ./$d; cd ..
+             fi
+          done
          
           
 
