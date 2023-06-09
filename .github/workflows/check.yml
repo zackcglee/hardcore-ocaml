@@ -35,10 +35,10 @@ jobs:
       - name: Build Hardcore_Ocaml
         run: |
           eval $(opam env) 
-          eval $(opam env) 
           for d in */ ; do
-              if [ "$d" != "doc/" ]; then
+              if [ "$d" != "doc/" ] && [ "$d" != "*opam/" ]; then
                   pwd
+                  ls -al
                   echo $d
                   cd $d; make; cd ..
               fi
