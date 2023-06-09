@@ -35,10 +35,13 @@ jobs:
       - name: Build Hardcore_Ocaml
         run: |
           eval $(opam env) 
+          eval $(opam env) 
           for d in */ ; do
-            if [ "$d" != "doc/" ]; then
-              cd $d; make; cd ..
-            fi
+              if [ "$d" != "doc/" ]; then
+                  pwd
+                  echo $d
+                  cd $d; make; cd ..
+              fi
           done
 
       - name: Run test (regression)
