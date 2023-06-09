@@ -37,10 +37,8 @@ jobs:
           eval $(opam env) 
           for d in */ ; do
               if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
-                  pwd
-                  ls -al
                   echo $d
-                  cd $d; make; cd ..
+                  cd $d;ls -al ;make; cd ..
               fi
           done
 
