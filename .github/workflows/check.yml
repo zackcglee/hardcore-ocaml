@@ -59,7 +59,7 @@ jobs:
                  if [ "$d2" != "tail-recursion" ]; then
                     d2="tail"
                  fi
-                 cd $d2;time ./$d2; cd ..
+                 cd $d;time ./$d2 > $d2.txt; cd ..
              fi
           done
          
