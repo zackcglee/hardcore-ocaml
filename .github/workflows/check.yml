@@ -44,8 +44,8 @@ jobs:
         run: |
           eval $(opam env) 
           for d in */ ; do
-            if [ "$dir" != "doc" ]; then
-              cd $dir; make
+            if [ "$d" != "doc" ]; then
+              cd $d; make; cd ..
             fi
           done
 
