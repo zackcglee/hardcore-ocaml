@@ -35,17 +35,18 @@ jobs:
       - name: Build Hardcore_Ocaml
         run: |
           eval $(opam env) 
-          for d in */ ; do
-              if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
-                  echo $d
-                  cd $d;ls -al ;make; cd ..
-              fi
-          done
+          cd list; make
+#          for d in */ ; do
+#              if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
+#                  echo $d
+#                  cd $d;ls -al ;make; cd ..
+#              fi
+#          done
 
       - name: Run test (regression)
         run: |
           eval $(opam env)
-          cd tail-recursion;  time ./tail -opt 10000000 > test.txt
+          cd list;  time ./list -opt 10000000 > test.txt
          
           
 
