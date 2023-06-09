@@ -52,8 +52,8 @@ jobs:
       - name: Run test (regression)
         run: |
           eval $(opam env)
-          cd tail-recursion; ./tail-recursion
-          time ./tail -opt 10000000 > test.txt
+          cd tail-recursion;  time ./tail -opt 10000000 > test.txt
+         
           
 
       - name: Report check status
