@@ -32,16 +32,23 @@ jobs:
             ${{ env.cache-name }}-build-${{ hashFiles('hardcore.opam', 'build.sh') }}
             ${{ env.cache-name }}-build-
 
+      - name: Install dependencies
+        run: |
+          wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+          sudo add-apt-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-13 main"
+          sudo apt-get update
+          sudo apt-get install -y llvm-13-dev cmake clang-13
+          opam install -y dune ounit llvm.13.0.0 odoc
+          
       - name: Build Hardcore_Ocaml
         run: |
           eval $(opam env) 
-          cd list; make
-#          for d in */ ; do
-#              if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
-#                  echo $d
-#                  cd $d;ls -al ;make; cd ..
-#              fi
-#          done
+          for d in */ ; do
+             if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
+                 echo $d
+                 cd $d;ls -al ;make; cd ..
+             fi
+          done
 
       - name: Run test (regression)
         run: |
