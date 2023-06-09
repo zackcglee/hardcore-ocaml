@@ -54,8 +54,12 @@ jobs:
           eval $(opam env)
           for d in */ ; do
              if [ "$d" != "doc/" ] && [ "$d" != "_opam/" ]; then
-                 echo "$d: "
-                 cd $d;time ./$d; cd ..
+                 d2=${d::-1}
+                 echo "$d2: "
+                 if [ "$d2" != "tail-recursion" ]; then
+                    d2="tail"
+                 fi
+                 cd $d2;time ./$d2; cd ..
              fi
           done
          
